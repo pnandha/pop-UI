@@ -1,8 +1,11 @@
 import React from 'react';
 import {Text} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+
+import Index from './src';
 
 const App = () => {
-  return <Text>HELLOOOOOOOOOOOOOOO</Text>;
+  return <Index />
 };
 
 export default App;
