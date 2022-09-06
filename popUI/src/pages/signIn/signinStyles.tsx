@@ -1,6 +1,7 @@
 import { ImageBackground, StyleSheet } from 'react-native'
 
-const landingStyles = StyleSheet.create({
+
+const signinStyles = StyleSheet.create({
     container: {
         backgroundColor : '#EAEAEA',
         width: '100%',
@@ -12,33 +13,26 @@ const landingStyles = StyleSheet.create({
         fontSize: 40,
         fontWeight: 'bold',
         color: '#231942',
-        marginTop: '10%',
+        marginTop: '5%',
         marginLeft: '5%',
         marginRight: '5%',
     },
-    registerButton : {
-        backgroundColor : '#231942',
-        color: 'white',
-        marginLeft: '5%',
-        marginRight: '5%',
-        padding: 20,
-        borderRadius: 15
-        },
-    registerButtonText : {
-        color: 'white',
-        textAlign: 'center', 
-        fontWeight: 'bold',
-        fontSize: 20,
-    },
-    signInText: {
+    back :{
         fontSize: 15,
         fontWeight: 'bold',
-        textAlign: 'center', 
         color: '#231942',
-        marginTop: '8%',
         marginLeft: '5%',
         marginRight: '5%',
     },
+    input: {
+        height: 40,
+        marginLeft: '5%',
+        marginRight: '5%',
+        marginTop: '5%',
+        borderWidth: 1,
+        borderColor: '#231942',
+        padding: 10,
+      },
 })
 
-export default landingStyles
+export default signinStyles
