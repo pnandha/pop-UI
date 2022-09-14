@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, Text, SafeAreaView, TouchableOpacity} from 'react-native'
 import landingStyles from './landingStyles'
+import { useNavigation } from '@react-navigation/native'
 import ExploreSvg from '../../assets/images/landing/explore.svg'
-import { useNavigation } from '@react-navigation/native';
 
 const Landing = () => {
     const navigation = useNavigation();
@@ -29,7 +29,7 @@ const Landing = () => {
             onPress={() => goToSignIn()}
             >
                 <Text style={landingStyles.signInText}>
-                Already have an account sign in here
+                Already have an account? Sign in here
                 </Text>
             </TouchableOpacity>
         </View>

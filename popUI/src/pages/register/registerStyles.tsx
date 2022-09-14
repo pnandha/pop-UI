@@ -2,46 +2,45 @@ import { ImageBackground, StyleSheet } from 'react-native'
 
 
 const registerStyles = StyleSheet.create({
-    container: {
-        backgroundColor : '#EAEAEA',
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column'
-    },
-    header :{
-        fontSize: 40,
-        fontWeight: 'bold',
-        color: '#231942',
-        marginTop: '5%',
-        marginLeft: '5%',
-        marginRight: '5%',
-    },
     back :{
         fontSize: 15,
         fontWeight: 'bold',
-        color: '#231942',
+        color: '#F50057',
         marginLeft: '5%',
         marginRight: '5%',
     },
-    input: {
-        height: 40,
-        marginLeft: '5%',
-        marginRight: '5%',
-        borderRadius: 8,
-        marginTop: '5%',
-        borderWidth: 1,
-        borderColor: '#231942',
-        padding: 10,
-      },
-      form: {
-        fontSize: 20,
+    container: {
+        flex: 1,
+        backgroundColor : '#EAEAEA',
+    },
+    inner: {
+        padding: 24,
+        flex: 1,
+        justifyContent: "space-around"
+    },
+    header: {
+        fontSize: 40,
         fontWeight: 'bold',
-        color: '#231942',
-        marginTop: '5%',
-        marginLeft: '5%',
-        marginRight: '5%',
-      }
-})
+        color: '#F50057',
+    },
+    textInput: {
+        height: 40,
+        borderColor: "#F50057",
+        borderBottomWidth: 1,
+        marginBottom: 36,
+    },
+  registerButton : {
+        backgroundColor : '#F50057',
+        color: 'white',
+        padding: 10,
+        borderRadius: 15
+        },
+    registerButtonText : {
+        color: 'white',
+        textAlign: 'center', 
+        fontWeight: 'bold',
+        fontSize: 20,
+    }}
+    )
 
 export default registerStyles

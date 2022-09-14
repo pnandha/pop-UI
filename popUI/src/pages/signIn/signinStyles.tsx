@@ -12,7 +12,7 @@ const signinStyles = StyleSheet.create({
     header :{
         fontSize: 40,
         fontWeight: 'bold',
-        color: '#231942',
+        color: '#F50057',
         marginTop: '5%',
         marginLeft: '5%',
         marginRight: '5%',
@@ -20,7 +20,7 @@ const signinStyles = StyleSheet.create({
     back :{
         fontSize: 15,
         fontWeight: 'bold',
-        color: '#231942',
+        color: '#F50057',
         marginLeft: '5%',
         marginRight: '5%',
     },
@@ -30,7 +30,7 @@ const signinStyles = StyleSheet.create({
         marginRight: '5%',
         marginTop: '5%',
         borderWidth: 1,
-        borderColor: '#231942',
+        borderColor: '#F50057',
         padding: 10,
       },
 })
