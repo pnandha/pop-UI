@@ -24,10 +24,8 @@ const registerStyles = StyleSheet.create({
         color: '#F50057',
     },
     textInput: {
-        height: 40,
-        borderColor: "#F50057",
-        borderBottomWidth: 1,
-        marginBottom: 36,
+        display: 'flex',
+        flexDirection: 'column',
     },
   registerButton : {
         backgroundColor : '#F50057',
@@ -40,7 +38,19 @@ const registerStyles = StyleSheet.create({
         textAlign: 'center', 
         fontWeight: 'bold',
         fontSize: 20,
-    }}
+    },
+    errorStyle: {
+        color: 'red',
+        marginTop: 15,
+    },
+    enterText: {
+        marginBottom: 0,
+        height: 40,
+        borderColor: "#F50057",
+        borderBottomWidth: 1,
+
+    }
+}
     )
 
 export default registerStyles

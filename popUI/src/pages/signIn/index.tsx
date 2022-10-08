@@ -1,31 +1,92 @@
 import { useNavigation } from "@react-navigation/native"
 import React from "react"
-import { View, Text, TouchableOpacity, SafeAreaView, TextInput } from "react-native"
+import { useState } from "react"
+import { View, Text, TouchableOpacity, SafeAreaView, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert } from "react-native"
+import { useDispatch } from "react-redux"
+import { postSignIn } from "../../api/auth/postSignInUser"
+import { getUserInfo } from "../../api/user/getUserInfo"
+import { validateEmail, validateName, validatePassword, validatePhoneNumber } from "../../constants"
+import { id, userName, userEmail, userNumber } from "../../state/userSlice"
 import registerStyles from "./signinStyles"
 
 const SignIn = () => {
     const navigation = useNavigation();
-    const goToRegister = () => {
+    const [email, setEmail]  = useState('')
+    const [mobileNumber, setMobileNumber]  = useState('')
+    const [password, setPassword]  = useState('')
+    const [emailError, setEmailError]  = useState(false)
+    const [loginError, setLoginError]  = useState(false)
+    const goToLanding= () => {
         navigation.navigate("Landing" as never, {} as never);
     }
-    return(
-        <View>
-        <SafeAreaView style={{ flex:0, backgroundColor: '#EAEAEA' }}  />
-        <View style={registerStyles.container}>
-        <TouchableOpacity
-            onPress={() => goToRegister()}
-            >
-            <Text style={registerStyles.back} >Back</Text>
-            </TouchableOpacity>
-        <Text style={registerStyles.header}>Sign In</Text>
+    const dispatch = useDispatch()
 
-        <TextInput
-        autoComplete="email"
-        textContentType="emailAddress"
-        style={registerStyles.input}
-      />
-        </View>
-        </View>
+    const userSuccessHandler = (info) => {
+        dispatch(id(info.id))
+        dispatch(userName(info.name))
+        dispatch(userEmail(info.email))
+        dispatch(userNumber(info.mobileNumber))
+    }
+    const userErrorHandeler = (error) => {
+        console.log(error)
+    }
+
+    const signInSuccessHandler = () => {
+        getUserInfo(userSuccessHandler, userErrorHandeler)
+        navigation.navigate("Home" as never, {} as never)
+      }
+      const signInErrorHandeler = (error) =>{
+        setLoginError(true)
+      }
+  
+
+    const sumbitSignIn = () => {
+        setLoginError(false)
+        if(
+        validateEmail(email) 
+        ){
+        postSignIn(
+          email, 
+          password, 
+          signInSuccessHandler, 
+          signInErrorHandeler)
+        } 
+        if (!validateEmail(email)){
+          setEmailError(true)
+        } else { setEmailError(false)}
+    }
+
+    return(
+        <KeyboardAvoidingView
+        behavior={"padding"}
+        style={registerStyles.container}
+      >
+          <SafeAreaView style={{ backgroundColor: '#EAEAEA' }}  />
+        <TouchableOpacity
+              onPress={() => goToLanding()}
+              >
+              <Text style={registerStyles.back} >Back</Text>
+              </TouchableOpacity>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={registerStyles.inner}>
+            <Text style={registerStyles.header}>Sign In</Text>
+            <View style={registerStyles.textInput}>
+                  <TextInput placeholder="Email" spellCheck={false} onChangeText={(e) => setEmail(e)} style={registerStyles.enterText} />
+                  {emailError ? <Text style={registerStyles.errorStyle}>Please Enter a Valid Email</Text> : null }
+            </View>
+            <View style={registerStyles.textInput}>
+               <TextInput placeholder="Password" spellCheck={false} onChangeText={(e) => setPassword(e)} secureTextEntry={true} style={registerStyles.enterText} />
+               {loginError ? <Text style={registerStyles.errorStyle}>You have entered the Wrong Email or Password</Text> : null }
+            </View>
+            <TouchableOpacity
+              onPress={() => sumbitSignIn()}
+              style={registerStyles.registerButton}
+              >
+              <Text style={registerStyles.registerButtonText}>Submit</Text>
+              </TouchableOpacity>
+          </View>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
     )
 }
 
