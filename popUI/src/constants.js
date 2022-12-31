@@ -22,4 +22,6 @@ function validatePhoneNumber(numb) {
     return re.test(name);
 }
 
-export {validateEmail, validatePassword, validatePhoneNumber, validateName}
+const categories = [{name: "Cards", id: 2}, {name: "Figures", id: 3},]
+
+export {validateEmail, validatePassword, validatePhoneNumber, validateName, categories}

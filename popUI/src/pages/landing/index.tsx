@@ -14,24 +14,26 @@ const Landing = () => {
     }
 
     return (
-        <View>
-        <SafeAreaView style={{ flex:0, backgroundColor: '#EAEAEA' }}  />
+        <View style={{ height: "100%", backgroundColor: '#F9F9F9' }}>
+        <SafeAreaView style={{ flex:0, backgroundColor: '#F9F9F9' }}  />
         <View style={landingStyles.container}>
             <Text style={landingStyles.header}>one mans rubbish is another mans treasure</Text>
-            <ExploreSvg  height={450} width={375}/>
-            <TouchableOpacity
-            onPress={() => goToRegister()}
-            style={landingStyles.registerButton}
-            >
-            <Text style={landingStyles.registerButtonText}>Register Here</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-            onPress={() => goToSignIn()}
-            >
+            <ExploreSvg  height={250} width={375}/>
+            <View>
+                <TouchableOpacity
+                onPress={() => goToRegister()}
+                style={landingStyles.registerButton}
+                >
+                <Text style={landingStyles.registerButtonText}>Register Here</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                onPress={() => goToSignIn()}
+                >
                 <Text style={landingStyles.signInText}>
-                Already have an account? Sign in here
-                </Text>
-            </TouchableOpacity>
+                    Already have an account? Sign in here
+                    </Text>
+                </TouchableOpacity>
+            </View>
         </View>
         </View>
     )

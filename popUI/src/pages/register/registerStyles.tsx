@@ -5,13 +5,13 @@ const registerStyles = StyleSheet.create({
     back :{
         fontSize: 15,
         fontWeight: 'bold',
-        color: '#F50057',
+        color: '#FF781F',
         marginLeft: '5%',
         marginRight: '5%',
     },
     container: {
         flex: 1,
-        backgroundColor : '#EAEAEA',
+        backgroundColor : '#F9F9F9',
     },
     inner: {
         padding: 24,
@@ -21,14 +21,14 @@ const registerStyles = StyleSheet.create({
     header: {
         fontSize: 40,
         fontWeight: 'bold',
-        color: '#F50057',
+        color: '#266CCF',
     },
     textInput: {
         display: 'flex',
         flexDirection: 'column',
     },
   registerButton : {
-        backgroundColor : '#F50057',
+        backgroundColor : '#FF781F',
         color: 'white',
         padding: 10,
         borderRadius: 15
@@ -46,7 +46,7 @@ const registerStyles = StyleSheet.create({
     enterText: {
         marginBottom: 0,
         height: 40,
-        borderColor: "#F50057",
+        borderColor: "#FF781F",
         borderBottomWidth: 1,
 
     }

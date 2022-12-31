@@ -58,6 +58,20 @@ function handleResponse(response, successCallback, errorCallback, unAuthUrl, red
                 throw err;
                })
             }
+            else {
+                const jsonPromise = response.json()
+                jsonPromise.then((data) => {
+                if(data){
+                        errorCallback(response)
+                    } else{
+                        errorCallback({}, 'no data')
+                    }
+                })
+                   .catch((err) =>{
+                    console.log(err, 'server error')
+                    throw err;
+                   })
+                }
 }
 
 

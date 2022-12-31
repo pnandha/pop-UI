@@ -2,25 +2,23 @@ import { ImageBackground, StyleSheet } from 'react-native'
 
 const landingStyles = StyleSheet.create({
     container: {
-        backgroundColor : '#EAEAEA',
+        backgroundColor : '#F9F9F9',
         width: '100%',
-        height: '100%',
+        height: '90%',
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        justifyContent: "space-between",
     },
-    header :{
+    header:{
         fontSize: 40,
         fontWeight: 'bold',
-        color: '#F50057',
-        marginTop: '10%',
-        marginLeft: '5%',
-        marginRight: '5%',
+        color: '#266CCF',
+        margin: "5%",
     },
     registerButton : {
-        backgroundColor : '#F50057',
+        backgroundColor : '#FF781F',
         color: 'white',
-        marginLeft: '5%',
-        marginRight: '5%',
+        margin: "5%",
         padding: 20,
         borderRadius: 15
         },
@@ -34,10 +32,8 @@ const landingStyles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
         textAlign: 'center', 
-        color: '#F50057',
-        marginTop: '8%',
-        marginLeft: '5%',
-        marginRight: '5%',
+        color: '#FF781F',
+        margin: "5%",
     },
 })
 

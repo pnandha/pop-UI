@@ -69,11 +69,9 @@ const Register = () => {
       behavior={"padding"}
       style={registerStyles.container}
     >
-        <SafeAreaView style={{ backgroundColor: '#EAEAEA' }}  />
-      <TouchableOpacity
-            onPress={() => goToRegister()}
-            >
-            <Text style={registerStyles.back} >Back</Text>
+        <SafeAreaView style={{ backgroundColor: '#F9F9F9' }}  />
+      <TouchableOpacity onPress={() => goToRegister()} >
+            <Text style={registerStyles.back}>Back</Text>
             </TouchableOpacity>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={registerStyles.inner}>

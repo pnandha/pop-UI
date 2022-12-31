@@ -61,7 +61,7 @@ const SignIn = () => {
         behavior={"padding"}
         style={registerStyles.container}
       >
-          <SafeAreaView style={{ backgroundColor: '#EAEAEA' }}  />
+          <SafeAreaView style={{ backgroundColor: '#F9F9F9' }}  />
         <TouchableOpacity
               onPress={() => goToLanding()}
               >
@@ -71,11 +71,11 @@ const SignIn = () => {
           <View style={registerStyles.inner}>
             <Text style={registerStyles.header}>Sign In</Text>
             <View style={registerStyles.textInput}>
-                  <TextInput placeholder="Email" spellCheck={false} onChangeText={(e) => setEmail(e)} style={registerStyles.enterText} />
+                  <TextInput placeholder="Email" spellCheck={false} defaultValue={''} onChangeText={(e) => setEmail(e)} style={registerStyles.enterText} />
                   {emailError ? <Text style={registerStyles.errorStyle}>Please Enter a Valid Email</Text> : null }
             </View>
             <View style={registerStyles.textInput}>
-               <TextInput placeholder="Password" spellCheck={false} onChangeText={(e) => setPassword(e)} secureTextEntry={true} style={registerStyles.enterText} />
+               <TextInput placeholder="Password" spellCheck={false} defaultValue={''} onChangeText={(e) => setPassword(e)} secureTextEntry={true} style={registerStyles.enterText} />
                {loginError ? <Text style={registerStyles.errorStyle}>You have entered the Wrong Email or Password</Text> : null }
             </View>
             <TouchableOpacity
