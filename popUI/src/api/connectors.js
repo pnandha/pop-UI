@@ -1,4 +1,4 @@
-const api = 'http://localhost:8000/api'
+const api = 'https://api.api-pop.co.uk/api'
 
 
 const defaultHeaders = {
@@ -99,8 +99,29 @@ async function postRequest(apiPath, oauth, data, successCallback, errorCallback,
             redirect,
         )
     ) .catch(function(error) {
+        errorCallback(error)
         console.log('There has been a problem with your fetch operation: ' + error.message);
-          throw error;
+        })
+
+}
+
+async function deleteRequest(apiPath, oauth, data, successCallback, errorCallback, redirect){
+    await fetch( `${api}/${apiPath}`, {
+        method: 'DELETE',
+        headers: getHeaders(oauth) ,
+        body: JSON.stringify(data),
+    }) .then(
+        response => handleResponse(
+            response,
+            successCallback,
+            errorCallback,
+            getUnAuthURL(),
+            redirect,
+        )
+    ) .catch(function(error) {
+        errorCallback(error)
+        console.log('There has been a problem with your fetch operation: ' + error.message);
+    
         })
 
 }
@@ -119,10 +140,32 @@ async function getRequest(apiPath, oauth, successCallback, errorCallback, redire
             redirect,
         )
     ) .catch(function(error) {
+        errorCallback(error)
         console.log('There has been a problem with your fetch operation: ' + error.message);
-          throw error;
         })
 
 }
 
-export { postRequest, getRequest }
+async function postformRequest(apiPath, formData, successCallback, errorCallback, redirect){
+    await fetch( `${api}/${apiPath}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+        body: formData,
+    }) .then(
+        response => handleResponse(
+            response,
+            successCallback,
+            errorCallback,
+            getUnAuthURL(),
+            redirect,
+        )
+    ) .catch(function(error) {
+        errorCallback(error)
+        console.log('There has been a problem with your fetch operation: ' + error.message);
+        })
+
+}
+
+export { postRequest, getRequest, deleteRequest, postformRequest}

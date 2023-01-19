@@ -5,6 +5,8 @@ export function postRegister(
     selectedEmail, 
     selectedPassword, 
     selectedMobileNumber,
+    location,
+    stringLocation,
     successHandler, 
     errorHandeler){
     const oauth = {}
@@ -12,7 +14,9 @@ export function postRegister(
         name: selectedName,
         email: selectedEmail,
         password: selectedPassword,
-        mobileNumber: selectedMobileNumber
+        mobileNumber: selectedMobileNumber,
+        userLocation: location,
+        stringLocation: stringLocation,
     }
     postRequest('register', oauth, data, successHandler, errorHandeler)
 }

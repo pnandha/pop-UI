@@ -1,13 +1,16 @@
 import { useNavigation } from "@react-navigation/native"
-import React from "react"
+import React, { useContext } from "react"
 import { useState } from "react"
 import { View, Text, TouchableOpacity, SafeAreaView, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert } from "react-native"
 import { useDispatch } from "react-redux"
 import { postSignIn } from "../../api/auth/postSignInUser"
 import { getUserInfo } from "../../api/user/getUserInfo"
 import { validateEmail, validateName, validatePassword, validatePhoneNumber } from "../../constants"
-import { id, userName, userEmail, userNumber } from "../../state/userSlice"
+import { id, userName, userEmail, userNumber, userLocation, userStringLocation } from "../../state/userSlice"
 import registerStyles from "./signinStyles"
+import AsyncStorage from "@react-native-async-storage/async-storage"
+import { CommonActions } from '@react-navigation/native';
+import { AuthContext } from "../../AuthContext"
 
 const SignIn = () => {
     const navigation = useNavigation();
@@ -16,27 +19,35 @@ const SignIn = () => {
     const [password, setPassword]  = useState('')
     const [emailError, setEmailError]  = useState(false)
     const [loginError, setLoginError]  = useState(false)
+    const { setSignedInTrue } = useContext(AuthContext)
     const goToLanding= () => {
         navigation.navigate("Landing" as never, {} as never);
     }
     const dispatch = useDispatch()
 
-    const userSuccessHandler = (info) => {
+    const userSuccessHandler = (info: {
+      userStringLocation: any, userLocation: any, id: any; name: any; email: any; mobileNumber: any }) => {
         dispatch(id(info.id))
         dispatch(userName(info.name))
         dispatch(userEmail(info.email))
         dispatch(userNumber(info.mobileNumber))
+        dispatch(userLocation(info.userLocation))
+        dispatch(userStringLocation(info.userStringLocation))
     }
-    const userErrorHandeler = (error) => {
+    const userErrorHandeler = (error: any) => {
         console.log(error)
     }
 
-    const signInSuccessHandler = () => {
+    async function signInSuccessHandler(data: any){
+        await AsyncStorage.setItem('email', email);
+        await AsyncStorage.setItem('password', password);
+        await AsyncStorage.setItem('isLoggedIn', 'true')
         getUserInfo(userSuccessHandler, userErrorHandeler)
-        navigation.navigate("Home" as never, {} as never)
+        setSignedInTrue()
       }
-      const signInErrorHandeler = (error) =>{
-        setLoginError(true)
+      
+      const signInErrorHandeler = (error: any) =>{
+        Alert.alert('Failed Sign in', error)
       }
   
 
@@ -71,11 +82,11 @@ const SignIn = () => {
           <View style={registerStyles.inner}>
             <Text style={registerStyles.header}>Sign In</Text>
             <View style={registerStyles.textInput}>
-                  <TextInput placeholder="Email" spellCheck={false} defaultValue={''} onChangeText={(e) => setEmail(e)} style={registerStyles.enterText} />
+                  <TextInput placeholder="Email" keyboardType={'email-address'} returnKeyType={'done'} spellCheck={false} defaultValue={''} onChangeText={(e) => setEmail(e)} style={registerStyles.enterText} />
                   {emailError ? <Text style={registerStyles.errorStyle}>Please Enter a Valid Email</Text> : null }
             </View>
             <View style={registerStyles.textInput}>
-               <TextInput placeholder="Password" spellCheck={false} defaultValue={''} onChangeText={(e) => setPassword(e)} secureTextEntry={true} style={registerStyles.enterText} />
+               <TextInput placeholder="Password" returnKeyType={'done'} spellCheck={false} defaultValue={''} onChangeText={(e) => setPassword(e)} secureTextEntry={true} style={registerStyles.enterText} />
                {loginError ? <Text style={registerStyles.errorStyle}>You have entered the Wrong Email or Password</Text> : null }
             </View>
             <TouchableOpacity

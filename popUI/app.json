@@ -1,4 +1,8 @@
 {
   "name": "popUI",
-  "displayName": "popUI"
+  "displayName": "popUI",
+  "react-native-google-mobile-ads": {
+      "android_app_id": "ca-app-pub-1601352490704163/3185510509",
+      "ios_app_id": "ca-app-pub-1601352490704163~5001741789"
+    }
 }

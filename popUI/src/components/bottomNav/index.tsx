@@ -5,7 +5,7 @@ import Home from '../../pages/home';
 import Profile from '../../pages/profile';
 import { SafeAreaView, View } from 'react-native';
 import CreateProduct from '../../pages/createProduct';
-import LikedStyles from '../../pages/liked';
+import Liked from '../../pages/liked';
 
 const Tab = createBottomTabNavigator()
 Icon.loadFont().then();
@@ -25,6 +25,7 @@ const IndexScreen = () => {
                 component={Home}
                 options={{
                   tabBarLabel: 'Home',
+                  unmountOnBlur: true,
                   tabBarIcon: ({ color, size }) => (
                     <Icon name="home" color={color} size={size} />
                   ),
@@ -32,9 +33,10 @@ const IndexScreen = () => {
               />
               <Tab.Screen
                 name="Liked"
-                component={LikedStyles}
+                component={Liked}
                 options={{
                   tabBarLabel: 'Liked',
+                  unmountOnBlur: true,
                   tabBarIcon: ({ color, size }) => (
                     <Icon name="heart" color={color} size={size} />
                   ),
@@ -45,6 +47,7 @@ const IndexScreen = () => {
                 component={Profile}
                 options={{
                   tabBarLabel: 'Profile',
+                  unmountOnBlur: true,
                   tabBarIcon: ({ color, size }) => (
                     <Icon name="person" color={color} size={size} />
                   ),

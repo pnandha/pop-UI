@@ -18,7 +18,7 @@ const Landing = () => {
         <SafeAreaView style={{ flex:0, backgroundColor: '#F9F9F9' }}  />
         <View style={landingStyles.container}>
             <Text style={landingStyles.header}>one mans rubbish is another mans treasure</Text>
-            <ExploreSvg  height={250} width={375}/>
+            <ExploreSvg  height={250} width={420}/>
             <View>
                 <TouchableOpacity
                 onPress={() => goToRegister()}

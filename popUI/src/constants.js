@@ -12,16 +12,20 @@ function validatePassword(pw) {
 }
 
 function validatePhoneNumber(numb) {
-    var re = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
-  
-    return re.test(numb);
-  }
+  var re = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})|^(\d{10})$/;
 
-  function validateName(name){
-    var re = /^[a-zA-Z]+ [a-zA-Z]+$/;
+  return re.test(numb);
+}
+
+  function validateName(name) {
+    var re = /^[A-Za-z]+ [A-Za-z]+$/;
     return re.test(name);
 }
 
-const categories = [{name: "Cards", id: 2}, {name: "Figures", id: 3},]
 
-export {validateEmail, validatePassword, validatePhoneNumber, validateName, categories}
+
+const categories = [{name: "Cards", id: 1}, {name: "Figures", id: 2},]
+
+const imageDBurl = 'http://localhost:8000'
+
+export {validateEmail, validatePassword, validatePhoneNumber, validateName, categories, imageDBurl}

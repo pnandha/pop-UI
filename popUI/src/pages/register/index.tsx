@@ -6,17 +6,21 @@ import { View, Text, TouchableOpacity, SafeAreaView, TextInput,
 KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, ScrollView, Button, Alert } from "react-native"
 import {validateEmail, validatePassword, validatePhoneNumber, validateName} from "../../constants"
 import registerStyles from "./registerStyles"
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 const Register = () => {
     const navigation = useNavigation()
     const [name, setName]  = useState('')
     const [email, setEmail]  = useState('')
     const [mobileNumber, setMobileNumber]  = useState('')
+    const [location, setLocation]  = useState('')
+    const [stringLocation, setStringLocation] = useState<any | null>(null)
     const [password, setPassword]  = useState('')
     const [nameError, setNameError]  = useState(false)
     const [emailError, setEmailError]  = useState(false)
     const [mobileNumberError, setMobileNumberError]  = useState(false)
     const [passwordError, setPasswordError]  = useState(false)
+    const [locationError, setLocationError]  = useState(false)
     const goToRegister = () => {
         navigation.navigate("Landing" as never, {} as never);
       }
@@ -42,12 +46,16 @@ const Register = () => {
       && validatePhoneNumber(mobileNumber)
       && validatePassword(password) 
       && validateName(name)
+      && location
+      && stringLocation
       ){
       postRegister(
         name,
         email, 
         password, 
         mobileNumber,
+        location,
+        stringLocation,
         registerSuccessHandler, 
         registerErrorHandeler)
       } 
@@ -63,6 +71,9 @@ const Register = () => {
       if (!validatePassword(password)){
         setPasswordError(true)
       } else { setPasswordError(false) }
+      if (!location){
+        setLocationError(true)
+      } else { setLocationError(false) }
   }
     return(
       <KeyboardAvoidingView
@@ -87,6 +98,38 @@ const Register = () => {
           <View style={registerStyles.textInput}>
                <TextInput placeholder="Mobile Number" spellCheck={false} onChangeText={(e) => setMobileNumber(e)} style={registerStyles.enterText} />
                 {mobileNumberError ? <Text style={registerStyles.errorStyle}>Please Enter a Valid Number</Text> : null }
+          </View>
+          <View style={registerStyles.textInput}>
+          <ScrollView horizontal contentContainerStyle={{flex: 1, width: '100%', height: '100%'}}>
+               <GooglePlacesAutocomplete
+                  placeholder='Search Location'
+                  fetchDetails={true}
+                  onPress={(data, details) => {
+                  setStringLocation(details?.formatted_address)
+                  setLocation(`POINT(${details?.geometry.location.lat} ${details?.geometry.location.lng})`)
+                  }}
+                  query={{
+                  key: 'AIzaSyAokUQ1bxWYKpaq4SyLz8UsnLef_Ur-yEg',
+                  language: 'en',
+                  }}
+                  styles={{
+                     textInputContainer:{
+                        marginVertical: '2%'
+                     },
+                     textInput: {
+                        marginBottom: 0,
+                        height: 40,
+                        borderColor: "#FF781F",
+                        borderBottomWidth: 1,
+                        backgroundColor: '#F9F9F9',
+                        fontSize: 14,
+                     },
+                     predefinedPlacesDescription: {
+                     color: '#1faadb',
+                     }}}
+                  />
+               </ScrollView>
+               {locationError ? <Text style={registerStyles.errorStyle}>Please Select A Location, Does Not Have To Be Exact </Text> : null }
           </View>
           <View style={registerStyles.textInput}>
                <TextInput placeholder="Password" spellCheck={false} onChangeText={(e) => setPassword(e)} secureTextEntry={true} style={registerStyles.enterText} />

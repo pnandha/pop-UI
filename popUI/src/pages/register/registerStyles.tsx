@@ -48,6 +48,7 @@ const registerStyles = StyleSheet.create({
         height: 40,
         borderColor: "#FF781F",
         borderBottomWidth: 1,
+        padding: "2%",
 
     }
 }

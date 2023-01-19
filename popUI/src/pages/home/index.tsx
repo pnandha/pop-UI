@@ -9,7 +9,7 @@ import CategoryCards from "../../components/CategoryCards/categoryCards"
 import { useNavigation } from "@react-navigation/native"
 
 const Home = () => {
-    const [searchType, setSearchType] = useState("lookingFor")
+    const [searchType, setSearchType] = useState("looking for")
     const [searchText, setSearchText] = useState("")
     const navigation = useNavigation()
     const searchSumbit = () => {
@@ -18,19 +18,20 @@ const Home = () => {
         setSearchText("")
         }
     }
+
+    const goToCat = (category: any, categoryID: any) =>{
+        navigation.navigate("SeeMore" as never, {category: category, categoryID: categoryID} as never);
+    }
+
     return (
         <View >
         <SafeAreaView style={{ flex: 0, backgroundColor: '#F9F9F9' }}  />
         <View style={homeStyles.container}>            
-                { searchType === "lookingFor" ?
+                { searchType === "looking for" ?
                 <>
-              
-                <Text style={homeStyles.searchHeader} ><Text style={{color: "#266CCF"}}>Iam looking for...</Text></Text>
-        
+                <Text style={homeStyles.searchHeader} ><Text style={{color: "#266CCF"}}>I am looking for...</Text></Text>
                 <View style={homeStyles.searchbar}>
-                      
                         <Icon name="arrow-switch" color={"#FF781F"} size={25} onPress={() => {setSearchType("trading") }}/>
-                       
                         <TextInput 
                         style={homeStyles.searchInput} 
                         placeholder="Looking for..." 
@@ -41,11 +42,9 @@ const Home = () => {
                 </View>
                 </> :
                 <>
-              
-                <Text style={homeStyles.searchHeader}>Iam trading...</Text>
-        
+                <Text style={homeStyles.searchHeader}>I am trading...</Text>
                 <View style={homeStyles.searchbar}>                  
-                  <Icon name="arrow-switch" color={"#266CCF"} size={25} onPress={() => {setSearchType("lookingFor")}}/>
+                  <Icon name="arrow-switch" color={"#266CCF"} size={25} onPress={() => {setSearchType("looking for")}}/>
                   <TextInput 
                     style={homeStyles.searchInput} 
                     placeholder="Trading..." 
@@ -58,13 +57,15 @@ const Home = () => {
                 }
             <ScrollView >
             {
-            categories.map((item,key)=>
-                 <View>
-                    <View style={homeStyles.catContainers} key={key}>
+            categories.map((item, key)=>
+                 <View key={key}>
+                    <View style={homeStyles.catContainers}>
                         <Text style={homeStyles.catTitles}>{item.name}</Text>
-                        <Text style={{color: "#FF781F", fontWeight: "bold"}}>see more...</Text>
+                        <TouchableOpacity onPress={() => goToCat(item.name, item.id)}>
+                            <Text style={{color: "#FF781F", fontWeight: "bold"}}>see more...</Text>
+                        </TouchableOpacity>
                     </View>
-                    <CategoryCards categoryID={item.id}/>
+                    <CategoryCards category={item.name} categoryID={item.id}/>
                 </View>
                 )}
             </ScrollView>
