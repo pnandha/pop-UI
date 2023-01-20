@@ -4,7 +4,6 @@ import { useSelector } from "react-redux"
 import likedStyles from './likedStyles'
 import { getSavedProduct } from "../../api/products/getSavedProducts"
 import { useFocusEffect, useNavigation } from "@react-navigation/native"
-import { imageDBurl } from "../../constants"
 import Icon from 'react-native-vector-icons/Octicons'
 
 
@@ -53,7 +52,7 @@ const Liked = () => {
                 <View style={likedStyles.card}>
                     <Image
                     style={likedStyles.image} 
-                    source={{uri: imageDBurl + item.image_url}}/>
+                    source={{uri: item.image_url}}/>
                     <Text style={likedStyles.cardTextHeader}>Trading {item.name}</Text>
                     <Text style={likedStyles.cardTextBody}>For {item.trading_for}</Text>
                 </View>

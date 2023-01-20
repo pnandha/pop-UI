@@ -1,6 +1,5 @@
 const api = 'https://api.api-pop.co.uk/api'
 
-
 const defaultHeaders = {
     'Content-Type' : 'application/json',
 }
@@ -150,7 +149,8 @@ async function postformRequest(apiPath, formData, successCallback, errorCallback
     await fetch( `${api}/${apiPath}`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'multipart/form-data',
+            'content-type': 'multipart/form-data; boundary=------WebKitFormBoundaryv1Amb7EgjvkQuWey',
+            'Accept': 'application/json'
         },
         body: formData,
     }) .then(

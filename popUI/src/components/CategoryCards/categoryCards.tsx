@@ -11,7 +11,6 @@ import categoryStyles from './categoryStyle'
 import { getProductsByCat } from '../../api/products/getProductsByCat';
 import { useNavigation } from '@react-navigation/native';
 import { useFocusEffect } from '@react-navigation/native';
-import { imageDBurl } from '../../constants';
 
 const CategoryCards = (categoryID: any) => {
     const [products, setProducts] = useState<any[]>([])
@@ -44,7 +43,7 @@ const CategoryCards = (categoryID: any) => {
                 <View style={categoryStyles.card}>
                     <Image
                     style={categoryStyles.image} 
-                    source={{uri: imageDBurl + item.image_url}}/>
+                    source={{uri: item.image_url}}/>
                     <Text style={categoryStyles.cardTextHeader}>Trading {item.name}</Text>
                     <Text style={categoryStyles.cardTextBody}> For {item.trading_for}</Text>
                 </View>

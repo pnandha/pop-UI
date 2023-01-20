@@ -12,7 +12,6 @@ import searchStyles from "./searchStyles"
 import { useNavigation} from "@react-navigation/native"
 import { getProductsTrade } from "../../api/products/getProductsTrade"
 import { getProductsSearch } from "../../api/products/getProductsSearch"
-import { imageDBurl } from "../../constants"
 
 
 const Search = ({ route }) => {
@@ -78,7 +77,7 @@ const Search = ({ route }) => {
                 <View style={searchStyles.card} >
                     <Image
                     style={searchStyles.image} 
-                    source={{uri: imageDBurl + item.image_url}}/>
+                    source={{uri: item.image_url}}/>
                     <Text style={searchStyles.cardTextHeader}>Trading {item.name}</Text>
                     <Text style={searchStyles.cardTextBody}>For {item.trading_for}</Text>
                 </View>

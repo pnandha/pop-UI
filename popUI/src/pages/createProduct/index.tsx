@@ -11,7 +11,7 @@ import  { MediaType, launchImageLibrary} from 'react-native-image-picker';
 import { createProduct } from "../../api/products/createProduct"
 import { MyState } from "../../state/userSlice"
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import TagInput from 'react-native-tag-input';
+import { Image as img } from 'react-native-compressor';
 
 
 
@@ -38,9 +38,6 @@ const CreateProduct = () => {
    const timeOptions: Intl.DateTimeFormatOptions = { hour: 'numeric', minute: '2-digit', weekday: 'short',  day: 'numeric', month: 'short', year: 'numeric' };
    const userId = useSelector((state: MyState) => state.user.id)
 
-
-
-
    const selectImage = () => {
       const options = {
          title: 'Select Image',
@@ -64,15 +61,12 @@ const CreateProduct = () => {
       navigation.navigate("Home" as never, {} as never);
 
    }
-   const sumbitErrorHandeler = (error) =>{
-      console.log(error)
+   const sumbitErrorHandeler = () =>{
       Alert.alert('Error', 'Could not create item')
    
    }
 
-   const sumbit = () => {
-
-
+   const sumbit = async () => {
       if (!name){
          setNameError(true)
        } else { setNameError(false) }
@@ -99,21 +93,24 @@ const CreateProduct = () => {
          category &&
          location &&
          imageUrl) {
+      const compressedImage = await img.compress(imageUrl.uri, {
+         maxWidth: 1000,
+         quality: 0.6,
+       })
       const formData:any = new FormData()
-      formData.append('image', {
+      formData.append('image_url', {
             'name': imageUrl.fileName,
             "type": 'image/jpeg',
-            "uri": imageUrl.uri,
+             "uri": compressedImage,
       })
-      formData.append('name', name);
-      formData.append('trading_for', tradingFor);
-      formData.append('description', description);
-      formData.append('location', location);
-      formData.append('stringPostalCode', stringPostalCode);
-      formData.append('category', category);
-      formData.append('expire', date.toISOString());
+      formData.append('name', name)
+      formData.append('trading_for', tradingFor)
+      formData.append('description', description)
+      formData.append('location', location)
+      formData.append('stringPostalCode', stringPostalCode)
+      formData.append('category', category)
+      formData.append('expire', date.toISOString())
       formData.append('user_id', userId)
-      console.log(formData)
       createProduct(formData, sumbitSuccessHandler, sumbitErrorHandeler)
     }
    }

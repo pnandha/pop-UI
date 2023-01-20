@@ -10,7 +10,6 @@ import {
 import Icon from 'react-native-vector-icons/Octicons'
 import seeMoreStyles from "./seeMoreStyles"
 import { useFocusEffect, useNavigation} from "@react-navigation/native"
-import { imageDBurl } from "../../constants"
 import { getCategoryProducts } from "../../api/products/getCategoryProducts"
 
 
@@ -74,7 +73,7 @@ const SeeMore = ({ route }) => {
                 <View style={seeMoreStyles.card} >
                     <Image
                     style={seeMoreStyles.image} 
-                    source={{uri: imageDBurl + item.image_url}}/>
+                    source={{uri: item.image_url}}/>
                     <Text style={seeMoreStyles.cardTextHeader}>Trading {item.name}</Text>
                     <Text style={seeMoreStyles.cardTextBody}>For {item.trading_for}</Text>
                 </View>

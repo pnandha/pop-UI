@@ -12,7 +12,6 @@ import { MyState } from "../../state/userSlice"
 import { unSaveProduct } from "../../api/products/unsaveProduct"
 import { Linking } from 'react-native'
 import Pinchable from 'react-native-pinchable'
-import { imageDBurl } from "../../constants"
 import wellknown from 'wellknown'
 import MapView from 'react-native-maps'
 
@@ -93,7 +92,7 @@ const ProductPage = ({ route }) => {
             <TouchableWithoutFeedback onPress={() => setIsModalVisible(true)}>
           <Image
             style={productCardStyles.image}
-            source={{ uri: imageDBurl + item.image_url}}
+            source={{ uri: item.image_url}}
           />
       </TouchableWithoutFeedback>
       <Modal
@@ -109,7 +108,7 @@ const ProductPage = ({ route }) => {
           <Pinchable>
             <Image
               style={productCardStyles.largeImage}
-              source={{ uri: imageDBurl + item.image_url }}
+              source={{ uri: item.image_url }}
             />
           </Pinchable>
         </View>

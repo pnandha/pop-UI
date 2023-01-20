@@ -24,8 +24,7 @@ function validatePhoneNumber(numb) {
 
 
 
-const categories = [{name: "Cards", id: 1}, {name: "Figures", id: 2},]
+const categories = [{name: "Cards", id: 2}, {name: "Figures", id: 3}, {name: "Other", id: 4}]
 
-const imageDBurl = 'http://localhost:8000'
 
-export {validateEmail, validatePassword, validatePhoneNumber, validateName, categories, imageDBurl}
+export {validateEmail, validatePassword, validatePhoneNumber, validateName, categories}

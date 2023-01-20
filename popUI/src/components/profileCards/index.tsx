@@ -7,7 +7,6 @@ import {
 } from 'react-native'
 import profileCardStyles from './profileCardStyles'
 import { getProductsByCat } from '../../api/products/getProductsByCat';
-import { imageDBurl } from '../../constants';
 
 const CategoryCards = (categoryID: any) => {
     const [products, setProducts] = useState<any[]>([])
@@ -30,7 +29,7 @@ const CategoryCards = (categoryID: any) => {
                 <View style={profileCardStyles.card} key={key}>
                     <Image
                     style={profileCardStyles.image} 
-                    source={{uri: imageDBurl + item.image_url}}/>
+                    source={{uri: item.image_url}}/>
                     <Text style={profileCardStyles.cardTextHeader}>Trading {item.name}</Text>
                     <Text style={profileCardStyles.cardTextBody}>For {item.trading_for}</Text>
                 </View>

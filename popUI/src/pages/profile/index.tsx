@@ -9,7 +9,6 @@ import { MyState } from "../../state/userSlice"
 import Icon from 'react-native-vector-icons/Octicons';
 import { getProductsByUser } from "../../api/user/getProductsByUser"
 import { deleteProduct } from "../../api/products/deleteProduct"
-import { imageDBurl } from "../../constants"
 import { AuthContext } from "../../AuthContext"
 
 
@@ -129,7 +128,7 @@ const Profile = () => {
                 <View style={profileStyles.card}>
                     <Image
                     style={profileStyles.image} 
-                    source={{uri: imageDBurl + item.image_url}}/>
+                    source={{uri: item.image_url}}/>
                     <Text style={profileStyles.cardTextHeader}>Trading {item.name}</Text>
                     <TouchableOpacity style={profileStyles.cardIcon} onPress={() => deleteItem(item.id, item.name)} >
                         <Icon name="trash" color={"red"} size={25} />
