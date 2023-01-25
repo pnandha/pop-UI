@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native"
 import React, { useContext } from "react"
 import { useState } from "react"
-import { View, Text, TouchableOpacity, SafeAreaView, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert } from "react-native"
+import { View, Text, TouchableOpacity, SafeAreaView, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert, ScrollView } from "react-native"
 import { useDispatch } from "react-redux"
 import { postSignIn } from "../../api/auth/postSignInUser"
 import { getUserInfo } from "../../api/user/getUserInfo"
@@ -69,7 +69,6 @@ const SignIn = () => {
 
     return(
         <KeyboardAvoidingView
-        behavior={"padding"}
         style={registerStyles.container}
       >
           <SafeAreaView style={{ backgroundColor: '#F9F9F9' }}  />
@@ -78,8 +77,12 @@ const SignIn = () => {
               >
               <Text style={registerStyles.back} >Back</Text>
               </TouchableOpacity>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={registerStyles.inner}>
+        <View style={registerStyles.container}>
+        <ScrollView 
+        style={{ marginBottom: "5%" }}
+        showsVerticalScrollIndicator={false}
+        >
+          <View style={registerStyles.scrollContainer}>
             <Text style={registerStyles.header}>Sign In</Text>
             <View style={registerStyles.textInput}>
                   <TextInput placeholder="Email" keyboardType={'email-address'} returnKeyType={'done'} spellCheck={false} defaultValue={''} onChangeText={(e) => setEmail(e)} style={registerStyles.enterText} />
@@ -95,8 +98,9 @@ const SignIn = () => {
               >
               <Text style={registerStyles.registerButtonText}>Submit</Text>
               </TouchableOpacity>
+              </View>
+              </ScrollView>
           </View>
-        </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     )
 }

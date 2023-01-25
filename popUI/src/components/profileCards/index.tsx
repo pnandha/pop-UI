@@ -30,8 +30,8 @@ const CategoryCards = (categoryID: any) => {
                     <Image
                     style={profileCardStyles.image} 
                     source={{uri: item.image_url}}/>
-                    <Text style={profileCardStyles.cardTextHeader}>Trading {item.name}</Text>
-                    <Text style={profileCardStyles.cardTextBody}>For {item.trading_for}</Text>
+                    <Text style={profileCardStyles.cardTextHeader} numberOfLines={3} ellipsizeMode='tail'>Trading {item.name}</Text>
+                    <Text style={profileCardStyles.cardTextBody} numberOfLines={2} ellipsizeMode='tail'>For {item.trading_for}</Text>
                 </View>
                 )}
         </ScrollView>

@@ -53,8 +53,8 @@ const Liked = () => {
                     <Image
                     style={likedStyles.image} 
                     source={{uri: item.image_url}}/>
-                    <Text style={likedStyles.cardTextHeader}>Trading {item.name}</Text>
-                    <Text style={likedStyles.cardTextBody}>For {item.trading_for}</Text>
+                    <Text style={likedStyles.cardTextHeader} numberOfLines={3} ellipsizeMode='tail'>Trading {item.name}</Text>
+                    <Text style={likedStyles.cardTextBody} numberOfLines={3} ellipsizeMode='tail'>For {item.trading_for}</Text>
                 </View>
             </TouchableOpacity>
                 )}

@@ -34,13 +34,14 @@ const categoryStyles = StyleSheet.create({
     },
     cardTextHeader: {
         position: "absolute",
+        backgroundColor: '#266CCF',
         top: 8,
         left: 16,
         fontSize: 15,
         fontWeight: "bold",
         color: "white",
         textShadowColor: 'black',
-        textShadowOffset: {width: 2, height: 1},
+        textShadowOffset: {width: 4, height: 2},
         textShadowRadius: 2,
         width: "90%",
 
@@ -50,6 +51,7 @@ const categoryStyles = StyleSheet.create({
         bottom: 20,
         left: 16,
         fontSize: 15,
+        backgroundColor: '#266CCF',
         fontWeight: "bold",
         color: "white",
         textShadowColor: 'black',

@@ -5,17 +5,19 @@ const signinStyles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
         color: '#FF781F',
-        marginLeft: '5%',
-        marginRight: '5%',
+        margin: '5%',
+
     },
     container: {
         flex: 1,
         backgroundColor : '#F9F9F9',
+        height: '100%'
     },
     inner: {
-        padding: 24,
-        flex: 1,
-        justifyContent: "space-around"
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        margin: '5%',
     },
     header: {
         fontSize: 40,
@@ -43,12 +45,20 @@ const signinStyles = StyleSheet.create({
         marginTop: 15,
     },
     enterText: {
-        marginBottom: 0,
         height: 40,
-        borderColor: "#FF781F",
-        borderBottomWidth: 1,
-
-    }
+        backgroundColor: 'lightgrey',
+        borderRadius: 10,
+        padding: 10,
+        marginVertical: '5%',
+        fontWeight: 'bold',
+    },
+    scrollContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        margin: '5%',
+       
+    },
 }
     )
 

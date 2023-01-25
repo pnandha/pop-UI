@@ -30,13 +30,16 @@ const CreateProduct = () => {
    const [locationError, setLocationError] = useState(false)
    const [imageUrl, setImageUrl] = useState<any | null>(null)
    const [imageError, setImageError] = useState(false)
-   const [date, setDate] = useState(new Date())
    const [dateOpen, setDateOpen] = useState(false)
    const [catOpen, setCatOpen] = useState(false);
    const [catValue, setCatValue] = useState<any | null>(null)
    const [items, setItems] = useState(categories.map((item, i) => ({label: item.name, value: i, id: item.id})))
    const timeOptions: Intl.DateTimeFormatOptions = { hour: 'numeric', minute: '2-digit', weekday: 'short',  day: 'numeric', month: 'short', year: 'numeric' };
    const userId = useSelector((state: MyState) => state.user.id)
+   let today = new Date();
+   let tomorrow = new Date(today);
+   tomorrow.setDate(tomorrow.getDate() + 1)
+   const [date, setDate] = useState(tomorrow)
 
    const selectImage = () => {
       const options = {
@@ -140,6 +143,7 @@ const CreateProduct = () => {
              <TextInput
                 placeholder="Name"
                 value={name}
+                maxLength={50}
                 onChangeText={setName}
                 style={createProductStyles.enterText} />
                  {nameError ? <Text style={createProductStyles.errorStyle}>Please Enter a Valid Full Name</Text> : null }
@@ -148,6 +152,7 @@ const CreateProduct = () => {
                 placeholder="Description"
                 multiline={true}
                 value={description}
+                maxLength={255}
                 onChangeText={setDescription}
                 style={createProductStyles.multiLineInput} />
                 {descriptionError ? <Text style={createProductStyles.errorStyle}>Please Enter a Valid Description</Text> : null }
@@ -216,7 +221,7 @@ const CreateProduct = () => {
                </View>
                <DatePicker
                 modal
-                minimumDate={new Date()}
+                minimumDate={tomorrow}
                 maximumDate={new Date(Date.now() + 12096e5)}
                 open={dateOpen}
                 date={date}
@@ -244,6 +249,7 @@ const CreateProduct = () => {
              <TextInput
                 placeholder="Trading For"
                 value={tradingFor}
+                maxLength={255}
                 onChangeText={setTradingFor}
                 style={createProductStyles.enterText} /> 
                 {tradingError ? <Text style={createProductStyles.errorStyle}>Please Enter Trading Items, they can be multiple make sure to use a comma.</Text> : null }

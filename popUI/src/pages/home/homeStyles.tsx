@@ -4,7 +4,7 @@ const homeStyles = StyleSheet.create({
     container: {
         backgroundColor : '#F9F9F9',
         width: '100%',
-        height: "95%",
+        height: "99%",
         display: 'flex',
         flexDirection: 'column'
     },
@@ -29,7 +29,7 @@ const homeStyles = StyleSheet.create({
         alignItems: "center",
         margin: "2%",
         marginTop: "5%",
-        height: "5%"
+        height: "7%"
     },
     searchInput: {
         color: "black",

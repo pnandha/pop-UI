@@ -129,11 +129,11 @@ const Profile = () => {
                     <Image
                     style={profileStyles.image} 
                     source={{uri: item.image_url}}/>
-                    <Text style={profileStyles.cardTextHeader}>Trading {item.name}</Text>
+                    <Text style={profileStyles.cardTextHeader} numberOfLines={3} ellipsizeMode='tail' >Trading {item.name}</Text>
                     <TouchableOpacity style={profileStyles.cardIcon} onPress={() => deleteItem(item.id, item.name)} >
                         <Icon name="trash" color={"red"} size={25} />
                     </TouchableOpacity>
-                    <Text style={profileStyles.cardTextBody}>For {item.trading_for}</Text>
+                    <Text style={profileStyles.cardTextBody} numberOfLines={3} ellipsizeMode='tail'>For {item.trading_for}</Text>
                 </View>
             </TouchableOpacity>
                 )}

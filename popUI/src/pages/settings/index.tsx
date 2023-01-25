@@ -64,8 +64,6 @@ const Settings = ({ route }) => {
                 navigation.navigate("Home" as never, {} as never)
             }
             if (user.userName !== name || originaLocation !== location){
-                console.log(user.userName, name)
-                console.log(originaLocation, location)
                 postUserDetails(name, location, stringLocation, updateSuccess, updateError)
             }
         }
@@ -73,7 +71,6 @@ const Settings = ({ route }) => {
 
     return (
         <KeyboardAvoidingView
-        behavior={"padding"}
         style={settingsStyles.container}
       >
         <SafeAreaView style={{ backgroundColor: '#F9F9F9' }}  />
@@ -82,10 +79,14 @@ const Settings = ({ route }) => {
               >
               <Text style={settingsStyles.back} >Back</Text>
               </TouchableOpacity>
-              <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={settingsStyles.inner}>
+              <View style={settingsStyles.container}>
+                <ScrollView 
+                style={{ marginBottom: "5%" }}
+                showsVerticalScrollIndicator={false}
+                >
+                <View style={settingsStyles.scrollContainer}>
                     <Text style={settingsStyles.header}>Settings</Text>
-                    <Text style={{ fontWeight: 'bold'}}>Change your details below. More customisation on the way</Text>
+                    <Text style={{ fontWeight: 'bold', marginVertical: '5%'}}>Change your details below. More customisation on the way</Text>
                     <View style={settingsStyles.textInput}>
                     <Text style={settingsStyles.textTitles}>Name</Text>
                         <TextInput value={name} onChangeText={(e) => setName(e)} style={settingsStyles.enterText} />
@@ -102,7 +103,7 @@ const Settings = ({ route }) => {
                   setLocation(`POINT(${details?.geometry.location.lat} ${details?.geometry.location.lng})`)
                   }}
                   query={{
-                  key: '',
+                  key: 'AIzaSyAokUQ1bxWYKpaq4SyLz8UsnLef_Ur-yEg',
                   language: 'en',
                   }}
                   textInputProps={{
@@ -110,20 +111,20 @@ const Settings = ({ route }) => {
                     onChangeText: setStringLocation
                   }}
                   styles={{
-                     textInputContainer:{
-                        marginVertical: '2%'
-                     },
-                     textInput: {
-                        marginBottom: 0,
-                        height: 40,
-                        borderColor: "#FF781F",
-                        borderBottomWidth: 1,
-                        backgroundColor: '#F9F9F9',
-                        fontSize: 14,
-                     },
-                     predefinedPlacesDescription: {
-                     color: '#1faadb',
-                     }}}
+                    textInputContainer:{
+                       marginVertical: '5%'
+                    },
+                    textInput: {
+                       backgroundColor: 'lightgrey',
+                       color: 'black',
+                       height: 40,
+                       borderWidth: 0,
+                       borderRadius: 10,
+                       fontWeight: 'bold',
+                    },
+                    predefinedPlacesDescription: {
+                    color: '#1faadb',
+                    }}}
                   />
                </ScrollView>
                {locationError ? <Text style={settingsStyles.errorStyle}>Please Enter a Valid Location</Text> : null }
@@ -135,7 +136,8 @@ const Settings = ({ route }) => {
                     <Text style={settingsStyles.registerButtonText}>Confirm Change</Text>
                     </TouchableOpacity>
                 </View>
-            </TouchableWithoutFeedback>
+                </ScrollView>
+                </View>
 
 </KeyboardAvoidingView> )
 }

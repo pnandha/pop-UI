@@ -5,8 +5,7 @@ const searchStyles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
         color: '#FF781F',
-        marginLeft: '5%',
-        marginRight: '5%',
+        margin: '5%',
     },
     container: {
         flex: 1,
@@ -44,6 +43,7 @@ const searchStyles = StyleSheet.create({
     cardTextHeader: {
         position: "absolute",
         top: 8,
+        backgroundColor: '#266CCF',
         left: 16,
         fontSize: 15,
         fontWeight: "bold",
@@ -61,6 +61,7 @@ const searchStyles = StyleSheet.create({
         fontSize: 15,
         fontWeight: "bold",
         color: "white",
+        backgroundColor: '#266CCF',
         textShadowColor: 'black',
         textShadowOffset: {width: 1, height: 1},
         textShadowRadius: 2,

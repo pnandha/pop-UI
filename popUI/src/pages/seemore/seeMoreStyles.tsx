@@ -43,6 +43,7 @@ const seeMoreStyles = StyleSheet.create({
     },
     cardTextHeader: {
         position: "absolute",
+        backgroundColor: '#266CCF',
         top: 8,
         left: 16,
         fontSize: 15,
@@ -58,6 +59,7 @@ const seeMoreStyles = StyleSheet.create({
         position: "absolute",
         bottom: 20,
         left: 16,
+        backgroundColor: '#266CCF',
         fontSize: 15,
         fontWeight: "bold",
         color: "white",

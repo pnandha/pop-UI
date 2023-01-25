@@ -44,8 +44,8 @@ const CategoryCards = (categoryID: any) => {
                     <Image
                     style={categoryStyles.image} 
                     source={{uri: item.image_url}}/>
-                    <Text style={categoryStyles.cardTextHeader}>Trading {item.name}</Text>
-                    <Text style={categoryStyles.cardTextBody}> For {item.trading_for}</Text>
+                    <Text style={categoryStyles.cardTextHeader} numberOfLines={3} ellipsizeMode='tail'>Trading {item.name}</Text>
+                    <Text style={categoryStyles.cardTextBody} numberOfLines={3} ellipsizeMode='tail'> For {item.trading_for}</Text>
                 </View>
             </TouchableOpacity>
                 )}

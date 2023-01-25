@@ -77,15 +77,21 @@ const Register = () => {
   }
     return(
       <KeyboardAvoidingView
-      behavior={"padding"}
       style={registerStyles.container}
     >
         <SafeAreaView style={{ backgroundColor: '#F9F9F9' }}  />
       <TouchableOpacity onPress={() => goToRegister()} >
             <Text style={registerStyles.back}>Back</Text>
             </TouchableOpacity>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <ScrollView 
+       style={{ marginBottom: "5%" }}
+       showsVerticalScrollIndicator={false}
+       automaticallyAdjustKeyboardInsets={true}
+       keyboardShouldPersistTaps='always'
+       
+       >
         <View style={registerStyles.inner}>
+        
           <Text style={registerStyles.header}>Register</Text>
           <View style={registerStyles.textInput}>
                 <TextInput placeholder="Full Name" spellCheck={false} onChangeText={(e) => setName(e)} style={registerStyles.enterText} />
@@ -100,7 +106,7 @@ const Register = () => {
                 {mobileNumberError ? <Text style={registerStyles.errorStyle}>Please Enter a Valid Number</Text> : null }
           </View>
           <View style={registerStyles.textInput}>
-          <ScrollView horizontal contentContainerStyle={{flex: 1, width: '100%', height: '100%'}}>
+          <ScrollView horizontal keyboardShouldPersistTaps='always' contentContainerStyle={{flex: 1, width: '100%', height: '100%'}}>
                <GooglePlacesAutocomplete
                   placeholder='Search Location'
                   fetchDetails={true}
@@ -112,21 +118,22 @@ const Register = () => {
                   key: 'AIzaSyAokUQ1bxWYKpaq4SyLz8UsnLef_Ur-yEg',
                   language: 'en',
                   }}
+                  
                   styles={{
-                     textInputContainer:{
-                        marginVertical: '2%'
-                     },
-                     textInput: {
-                        marginBottom: 0,
-                        height: 40,
-                        borderColor: "#FF781F",
-                        borderBottomWidth: 1,
-                        backgroundColor: '#F9F9F9',
-                        fontSize: 14,
-                     },
-                     predefinedPlacesDescription: {
-                     color: '#1faadb',
-                     }}}
+                    textInputContainer:{
+                       marginVertical: '5%'
+                    },
+                    textInput: {
+                       backgroundColor: 'lightgrey',
+                       color: 'black',
+                       height: 40,
+                       borderWidth: 0,
+                       borderRadius: 10,
+                       fontWeight: 'bold',
+                    },
+                    predefinedPlacesDescription: {
+                    color: '#1faadb',
+                    }}}
                   />
                </ScrollView>
                {locationError ? <Text style={registerStyles.errorStyle}>Please Select A Location, Does Not Have To Be Exact </Text> : null }
@@ -142,7 +149,7 @@ const Register = () => {
             <Text style={registerStyles.registerButtonText}>Submit</Text>
             </TouchableOpacity>
         </View>
-      </TouchableWithoutFeedback>
+        </ScrollView>
     </KeyboardAvoidingView>
     )
 }

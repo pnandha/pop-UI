@@ -5,8 +5,7 @@ const productCardStyles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
         color: '#FF781F',
-        marginLeft: '5%',
-        marginRight: '5%',
+        margin: '5%',
     },
     container: {
         flexGrow: 1,

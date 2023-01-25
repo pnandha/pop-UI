@@ -59,6 +59,7 @@ const profileStyles = StyleSheet.create({
     cardTextHeader: {
         position: "absolute",
         top: 8,
+        backgroundColor: '#266CCF',
         left: 16,
         fontSize: 15,
         fontWeight: "bold",
@@ -75,11 +76,12 @@ const profileStyles = StyleSheet.create({
         left: 16,
         fontSize: 15,
         fontWeight: "bold",
+        backgroundColor: '#266CCF',
         color: "white",
         textShadowColor: 'black',
         textShadowOffset: {width: 1, height: 1},
         textShadowRadius: 2,
-        width: "90%",
+        width: "80%",
     },
     cardIcon: {
         position: "absolute",

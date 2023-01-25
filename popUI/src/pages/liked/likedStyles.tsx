@@ -42,6 +42,7 @@ const likedStyles = StyleSheet.create({
     cardTextHeader: {
         position: "absolute",
         top: 8,
+        backgroundColor: '#266CCF',
         left: 16,
         fontSize: 15,
         fontWeight: "bold",
@@ -55,6 +56,7 @@ const likedStyles = StyleSheet.create({
     cardTextBody: {
         position: "absolute",
         bottom: 20,
+        backgroundColor: '#266CCF',
         left: 16,
         fontSize: 15,
         fontWeight: "bold",
