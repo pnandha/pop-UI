@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { View, Text, TouchableOpacity, SafeAreaView, ScrollView, TextInput, Animated,  KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert, Easing } from "react-native"
+import { View, Text, TouchableOpacity, SafeAreaView, ScrollView, TextInput, Animated,  KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert, Easing, StatusBar } from "react-native"
 import { useSelector } from "react-redux"
 import homeStyles from './homeStyles'
 import { MyState } from "../../state/userSlice"
@@ -26,6 +26,7 @@ const Home = () => {
     return (
         <View >
         <SafeAreaView style={{ flex: 0, backgroundColor: '#F9F9F9' }}  />
+        <StatusBar barStyle={'dark-content'} />
         <View style={homeStyles.container}>            
                 { searchType === "looking for" ?
                 <>

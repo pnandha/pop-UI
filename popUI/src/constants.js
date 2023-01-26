@@ -24,7 +24,7 @@ function validatePhoneNumber(numb) {
 
 
 
-const categories = [{name: "Cards", id: 2}, {name: "Figures", id: 3}, {name: "Other", id: 4}]
+const categories = [{name: "Cards", id: 2}, {name: "Figures", id: 3}, {name: "Games", id: 4}, {name: "Comics/Books", id: 5}, {name: "CDs/Movies", id: 6}, {name: "Other", id: 7}]
 
 
 export {validateEmail, validatePassword, validatePhoneNumber, validateName, categories}

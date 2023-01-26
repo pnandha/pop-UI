@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { View, Text, TouchableOpacity, SafeAreaView, Modal, TextInput, KeyboardAvoidingView, Image, ScrollView, TouchableWithoutFeedback } from "react-native"
+import { View, Text, TouchableOpacity, SafeAreaView, Modal, TextInput, KeyboardAvoidingView, Image, ScrollView, TouchableWithoutFeedback, StatusBar } from "react-native"
 import { useSelector } from "react-redux"
 import productCardStyles from './productCardStyles'
 import { useNavigation } from "@react-navigation/native"
@@ -80,6 +80,7 @@ const ProductPage = ({ route }) => {
         style={productCardStyles.container}
       >
         <SafeAreaView style={{ backgroundColor: '#F9F9F9' }}  />
+        <StatusBar barStyle={'dark-content'} />
         <TouchableOpacity
               onPress={() => back()}
               >
@@ -100,6 +101,7 @@ const ProductPage = ({ route }) => {
         onRequestClose={() => setIsModalVisible(false)}
       >
         <SafeAreaView style={{ backgroundColor: '#F9F9F9' }}  />
+        <StatusBar barStyle={'dark-content'} />
         <TouchableOpacity
           onPress={() => setIsModalVisible(false)}>
             <Text style={productCardStyles.back}>Back</Text>

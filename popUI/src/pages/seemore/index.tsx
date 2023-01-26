@@ -6,7 +6,8 @@ import {
     SafeAreaView, 
     KeyboardAvoidingView,
     ScrollView, 
-    Image } from "react-native"
+    Image, 
+    StatusBar} from "react-native"
 import Icon from 'react-native-vector-icons/Octicons'
 import seeMoreStyles from "./seeMoreStyles"
 import { useFocusEffect, useNavigation} from "@react-navigation/native"
@@ -56,6 +57,7 @@ const SeeMore = ({ route }) => {
         style={seeMoreStyles.container}
       >
         <SafeAreaView style={{ backgroundColor: '#F9F9F9' }}  />
+        <StatusBar barStyle={'dark-content'} />
         <TouchableOpacity
               onPress={() => toHome()}
               >

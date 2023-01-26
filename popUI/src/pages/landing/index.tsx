@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, SafeAreaView, TouchableOpacity} from 'react-native'
+import { View, Text, SafeAreaView, StatusBar, TouchableOpacity} from 'react-native'
 import landingStyles from './landingStyles'
 import { useNavigation } from '@react-navigation/native'
 import ExploreSvg from '../../assets/images/landing/explore.svg'
@@ -16,6 +16,7 @@ const Landing = () => {
     return (
         <View style={{ height: "100%", backgroundColor: '#F9F9F9' }}>
         <SafeAreaView style={{ flex:0, backgroundColor: '#F9F9F9' }}  />
+        <StatusBar barStyle={'dark-content'} />
         <View style={landingStyles.container}>
             <Text style={landingStyles.header}>one mans rubbish is another mans treasure</Text>
             <ExploreSvg  height={250} width={420}/>

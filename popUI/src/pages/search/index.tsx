@@ -6,7 +6,8 @@ import {
     SafeAreaView, 
     KeyboardAvoidingView,
     ScrollView, 
-    Image } from "react-native"
+    Image, 
+    StatusBar} from "react-native"
 import Icon from 'react-native-vector-icons/Octicons';
 import searchStyles from "./searchStyles"
 import { useNavigation} from "@react-navigation/native"
@@ -59,6 +60,7 @@ const Search = ({ route }) => {
         style={searchStyles.container}
       >
         <SafeAreaView style={{ backgroundColor: '#F9F9F9' }}  />
+        <StatusBar barStyle={'dark-content'} />
         <TouchableOpacity
               onPress={() => toHome()}
               >

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, SafeAreaView, TouchableWithoutFeedback, Keyboard, ScrollView, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, SafeAreaView, TouchableWithoutFeedback, Keyboard, ScrollView, Alert, StatusBar } from 'react-native';
 import settingsStyles from './settingStyles';
 import { useNavigation } from '@react-navigation/native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
@@ -74,6 +74,7 @@ const Settings = ({ route }) => {
         style={settingsStyles.container}
       >
         <SafeAreaView style={{ backgroundColor: '#F9F9F9' }}  />
+        <StatusBar barStyle={'dark-content'} />
         <TouchableOpacity
               onPress={() => navigation.navigate("Home" as never, {} as never)}
               >
@@ -94,8 +95,9 @@ const Settings = ({ route }) => {
                     </View>
                     <View style={settingsStyles.textInput}>
                     <Text style={settingsStyles.textTitles}>Location</Text>
-                    <ScrollView horizontal contentContainerStyle={{flex: 1, width: '100%', height: '100%'}}>
+               <ScrollView horizontal contentContainerStyle={{flex: 1, width: '100%', height: '100%'}}>
                <GooglePlacesAutocomplete
+                  keepResultsAfterBlur={true}
                   placeholder='Search Location'
                   fetchDetails={true}
                   onPress={(data, details) => {
@@ -106,10 +108,7 @@ const Settings = ({ route }) => {
                   key: 'AIzaSyAokUQ1bxWYKpaq4SyLz8UsnLef_Ur-yEg',
                   language: 'en',
                   }}
-                  textInputProps={{
-                    value:  stringLocation,
-                    onChangeText: setStringLocation
-                  }}
+                  
                   styles={{
                     textInputContainer:{
                        marginVertical: '5%'

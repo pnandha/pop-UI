@@ -42,7 +42,7 @@ const signinStyles = StyleSheet.create({
     },
     errorStyle: {
         color: 'red',
-        marginTop: 15,
+        margin: 15,
     },
     enterText: {
         height: 40,

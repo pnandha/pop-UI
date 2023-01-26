@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { View, Text, TouchableOpacity, SafeAreaView, TextInput, TouchableWithoutFeedback, Keyboard, Alert, ScrollView, Button, FlatList, Image } from "react-native"
+import { View, Text, TouchableOpacity, SafeAreaView, TextInput, TouchableWithoutFeedback, Keyboard, Alert, ScrollView, Button, FlatList, Image, StatusBar } from "react-native"
 import { useSelector } from "react-redux"
 import createProductStyles from './createProductStyles'
 import { useNavigation } from "@react-navigation/native"
@@ -26,7 +26,7 @@ const CreateProduct = () => {
    const [category, setCategory] = useState<any | null>(null)
    const [categoryError, setCategoryError] = useState(false)
    const [location, setLocation] = useState('')
-   const [stringPostalCode, setStringPostalCode] = useState<any | null>(null)
+   const [stringPostalCode, setPostalCode] = useState<any | null>(null)
    const [locationError, setLocationError] = useState(false)
    const [imageUrl, setImageUrl] = useState<any | null>(null)
    const [imageError, setImageError] = useState(false)
@@ -68,6 +68,21 @@ const CreateProduct = () => {
       Alert.alert('Error', 'Could not create item')
    
    }
+
+
+   const setStringPostalCode = (details) => {
+      let postalCode;
+      if (details && details.address_components) {
+        const postalCodeComponent = details.address_components.find((v) => v.types[0] === "postal_code");
+        if (postalCodeComponent) {
+          postalCode = postalCodeComponent.long_name;
+        } else {
+          const cityComponent = details.address_components.find((v) => v.types[0] === "locality");
+          postalCode = cityComponent ? cityComponent.long_name : "";
+        }
+      }
+      setPostalCode(postalCode)
+    }
 
    const sumbit = async () => {
       if (!name){
@@ -129,6 +144,7 @@ const CreateProduct = () => {
       <SafeAreaView style={{ backgroundColor: '#F9F9F9' }} /><TouchableOpacity
           onPress={() => toProfile()}
        >
+         <StatusBar barStyle={'dark-content'} />
           <Text style={createProductStyles.back}>Back</Text>
        </TouchableOpacity>
        <View style={createProductStyles.container}>
@@ -157,32 +173,35 @@ const CreateProduct = () => {
                 style={createProductStyles.multiLineInput} />
                 {descriptionError ? <Text style={createProductStyles.errorStyle}>Please Enter a Valid Description</Text> : null }
             <Text style={createProductStyles.textTitles}>Where abouts is it located?</Text>
-            <ScrollView horizontal contentContainerStyle={{flex: 1, width: '100%', height: '100%'}}>
+               <ScrollView horizontal keyboardShouldPersistTaps='always' contentContainerStyle={{flex: 1, width: '100%', height: '100%'}}>
                <GooglePlacesAutocomplete
+                  keepResultsAfterBlur={true}
                   placeholder='Search Location'
                   fetchDetails={true}
                   onPress={(data, details) => {
-                  setStringPostalCode(details?.address_components.filter((v) => v.types[0] == "postal_code")[0].long_name)
+                  setStringPostalCode(details)
                   setLocation(`POINT(${details?.geometry.location.lat} ${details?.geometry.location.lng})`)
                   }}
                   query={{
                   key: 'AIzaSyAokUQ1bxWYKpaq4SyLz8UsnLef_Ur-yEg',
                   language: 'en',
-                  type: 'establishment',
                   }}
+                  
                   styles={{
-                     textInputContainer:{
-                        marginVertical: '5%'
-                     },
-                     textInput: {
-                        backgroundColor: 'lightgrey',
-                        color: 'black',
-                        borderWidth: 0,
-                        fontWeight: 'bold',
-                     },
-                     predefinedPlacesDescription: {
-                     color: '#1faadb',
-                     }}}
+                    textInputContainer:{
+                       marginVertical: '5%'
+                    },
+                    textInput: {
+                       backgroundColor: 'lightgrey',
+                       color: 'black',
+                       height: 40,
+                       borderWidth: 0,
+                       borderRadius: 10,
+                       fontWeight: 'bold',
+                    },
+                    predefinedPlacesDescription: {
+                    color: '#1faadb',
+                    }}}
                   />
                </ScrollView>
                {locationError ? <Text style={createProductStyles.errorStyle}>Please Enter a Valid Location</Text> : null }

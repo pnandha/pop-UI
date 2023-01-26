@@ -3,7 +3,7 @@ import React from "react"
 import { useState } from "react"
 import { postRegister } from "../../api/auth/postRegisterUser"
 import { View, Text, TouchableOpacity, SafeAreaView, TextInput, 
-KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, ScrollView, Button, Alert } from "react-native"
+KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, ScrollView, Button, Alert, StatusBar } from "react-native"
 import {validateEmail, validatePassword, validatePhoneNumber, validateName} from "../../constants"
 import registerStyles from "./registerStyles"
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
@@ -80,6 +80,7 @@ const Register = () => {
       style={registerStyles.container}
     >
         <SafeAreaView style={{ backgroundColor: '#F9F9F9' }}  />
+        <StatusBar barStyle={'dark-content'} />
       <TouchableOpacity onPress={() => goToRegister()} >
             <Text style={registerStyles.back}>Back</Text>
             </TouchableOpacity>

@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native"
 import React, { useContext } from "react"
 import { useState } from "react"
-import { View, Text, TouchableOpacity, SafeAreaView, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert, ScrollView } from "react-native"
+import { View, Text, TouchableOpacity, SafeAreaView, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert, ScrollView, StatusBar } from "react-native"
 import { useDispatch } from "react-redux"
 import { postSignIn } from "../../api/auth/postSignInUser"
 import { getUserInfo } from "../../api/user/getUserInfo"
@@ -20,6 +20,7 @@ const SignIn = () => {
     const [emailError, setEmailError]  = useState(false)
     const [loginError, setLoginError]  = useState(false)
     const { setSignedInTrue } = useContext(AuthContext)
+    const { setSignedInFalse } =  useContext(AuthContext)
     const goToLanding= () => {
         navigation.navigate("Landing" as never, {} as never);
     }
@@ -34,8 +35,9 @@ const SignIn = () => {
         dispatch(userLocation(info.userLocation))
         dispatch(userStringLocation(info.userStringLocation))
     }
-    const userErrorHandeler = (error: any) => {
-        console.log(error)
+    const userErrorHandeler = () => {
+        setLoginError(true)
+        setSignedInFalse()
     }
 
     async function signInSuccessHandler(data: any){
@@ -46,8 +48,8 @@ const SignIn = () => {
         setSignedInTrue()
       }
       
-      const signInErrorHandeler = (error: any) =>{
-        Alert.alert('Failed Sign in', error)
+      const signInErrorHandeler = () =>{
+        setLoginError(true)
       }
   
 
@@ -72,6 +74,7 @@ const SignIn = () => {
         style={registerStyles.container}
       >
           <SafeAreaView style={{ backgroundColor: '#F9F9F9' }}  />
+          <StatusBar barStyle={'dark-content'} />
         <TouchableOpacity
               onPress={() => goToLanding()}
               >

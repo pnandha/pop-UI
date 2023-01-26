@@ -1,6 +1,6 @@
 import { Link, useFocusEffect, useNavigation } from "@react-navigation/native"
 import React, { SetStateAction, useCallback, useContext, useEffect, useRef, useState } from "react"
-import { View, Text, TouchableOpacity, SafeAreaView, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert, ScrollView, Image } from "react-native"
+import { View, Text, TouchableOpacity, SafeAreaView, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert, ScrollView, Image, StatusBar } from "react-native"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { useDispatch, useSelector } from "react-redux"
 import { postLogout } from "../../api/auth/postLogout"
@@ -97,6 +97,7 @@ const Profile = () => {
     return (
         <View>
         <SafeAreaView style={{ flex:0, backgroundColor: '#F9F9F9' }}  />
+        <StatusBar barStyle={'dark-content'} />
         <View style={profileStyles.container}>
              <View style={profileStyles.headerContainer}>
                 <Text style={profileStyles.header}>{name[0]}</Text>

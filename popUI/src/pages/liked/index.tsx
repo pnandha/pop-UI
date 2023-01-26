@@ -1,5 +1,5 @@
 import React, { SetStateAction, useEffect, useRef, useState } from "react"
-import { View, Text, TouchableOpacity, SafeAreaView, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert, ScrollView, Image } from "react-native"
+import { View, Text, TouchableOpacity, SafeAreaView, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert, ScrollView, Image, StatusBar } from "react-native"
 import { useSelector } from "react-redux"
 import likedStyles from './likedStyles'
 import { getSavedProduct } from "../../api/products/getSavedProducts"
@@ -41,6 +41,7 @@ const Liked = () => {
     return (
         <View>
         <SafeAreaView style={{ flex:0, backgroundColor: '#F9F9F9' }}  />
+        <StatusBar barStyle={'dark-content'} />
         <View style={likedStyles.container}>
             <Text style={likedStyles.header}>Liked</Text>
             <Text style={{ color: 'grey', margin: "5%" }}>Liked {total} item(s)</Text>
